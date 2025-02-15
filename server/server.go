@@ -50,7 +50,7 @@ func main() {
 	mux.HandleFunc("/cotacao", func(w http.ResponseWriter, r *http.Request) {
 		exchangeRateHandler(w, r, db)
 	})
-	http.ListenAndServe("127.0.0.1:8080", mux)
+	http.ListenAndServe(":8080", mux)
 }
 
 func initializeDatabase() *sql.DB {
