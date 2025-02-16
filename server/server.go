@@ -87,7 +87,9 @@ func exchangeRateHandler(w http.ResponseWriter, _ *http.Request, db *sql.DB) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(&resp)
+	w.Header().Set("Content-Type", "application/json")
+	exchangeRateClientResponse := ExchangeRateClientResponse{Bid: resp.Bid}
+	json.NewEncoder(w).Encode(&exchangeRateClientResponse)
 }
 
 func fetchExchangeRate() (*ExchangeRateDetails, error) {
